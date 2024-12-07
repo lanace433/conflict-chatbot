@@ -18,7 +18,7 @@ if "thread_id" not in st.session_state:
 if "language" not in st.session_state:
     st.session_state.language = None
 
-st.set_page_config(page_title="my assistant", page_icon="⭐️")
+st.set_page_config(page_title="AmicAI", page_icon="⭐️")
 
 
 language = st.sidebar.selectbox("Select your language:", ["English", "Slovenian"])
@@ -29,7 +29,8 @@ if st.sidebar.button("Start Chat"):
     thread = client.beta.threads.create()
     st.session_state.thread_id = thread.id
 
-st.title("Conflict solver")
+st.title("AmicAI")
+st.subheader("Your virtual assistant to help you solve conflicts")
 
 # # Initial instructions based on selected language
 # if st.session_state.language:
@@ -52,8 +53,8 @@ if st.session_state.start_chat:
 
         # Ask about the problem after language is selected
         greeting = {
-            "English": "What conflict or problem should we solve today?",
-            "Slovenian": "Kateri konflikt ali problem bi morali rešiti danes?",
+            "English": "Describe the conflict you want to talk about.",
+            "Slovenian": "Opiši konflikt oz. situacijo, o kateri želiš spregovoriti.",
         }
         st.write(greeting.get(st.session_state.language, "What conflict or problem should we solve today?"))
 
